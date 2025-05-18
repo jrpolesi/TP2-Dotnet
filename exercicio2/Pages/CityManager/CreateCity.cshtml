@@ -1,0 +1,28 @@
+@page
+@model CreateCityModel
+@{
+    ViewData["Title"] = "Cidade Turística";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+
+    <form method="post" class="card p-4 shadow-sm">
+        <label asp-for="CityName" class="form-label mb-2">Nome da Cidade</label>
+
+        <div class="d-flex align-items-end gap-2">
+            <div class="flex-grow-1">
+                <input asp-for="CityName" class="form-control" placeholder="Digite o nome da cidade"/>
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    </form>
+
+    @if (Model.CityName != null)
+    {
+        <div class="alert alert-info mt-4" role="alert">
+            <strong>Cidade:</strong> @Model.CityName
+        </div>
+    }
+</div>
