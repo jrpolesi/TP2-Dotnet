@@ -1,0 +1,43 @@
+@page
+@model CreateCityModel
+@{
+    ViewData["Title"] = "Cidade Turística";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+
+    <form method="post" class="card p-4 shadow-sm">
+        <label asp-for="Input.CityName" class="form-label mb-2">Nome da Cidade</label>
+
+        <div class="d-flex align-items-start gap-2">
+            <div class="flex-grow-1">
+                <input asp-for="Input.CityName" class="form-control" placeholder="Digite o nome da cidade"/>
+                <span asp-validation-for="Input.CityName" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    </form>
+
+    @if (CreateCityModel.Cities.Any())
+    {
+        <div class="alert alert-info mt-4">
+            <ul class="mb-0">
+                @foreach (var city in CreateCityModel.Cities)
+                {
+                    <li>
+                        <strong>Cidade:</strong>
+                        <a asp-page="/CityManager/CityDetails" asp-route-cityName="@city">
+                            @city
+                        </a>
+                    </li>
+                }
+            </ul>
+
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+}
