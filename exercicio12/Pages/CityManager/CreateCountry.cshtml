@@ -1,0 +1,36 @@
+@page
+@model CreateCountryModel
+@{
+    ViewData["Title"] = "Criar País";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+
+    <form method="post" class="card p-4 shadow-sm">
+        <div class="mb-3">
+            <label asp-for="Input.CountryName" class="form-label"></label>
+            <input asp-for="Input.CountryName" class="form-control"/>
+            <span asp-validation-for="Input.CountryName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Input.CountryCode" class="form-label"></label>
+            <input asp-for="Input.CountryCode" class="form-control"/>
+            <span asp-validation-for="Input.CountryCode" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn align-self-end btn-primary">Cadastrar</button>
+    </form>
+
+    @if (Model.IsSubmitted)
+    {
+        <div class="alert alert-info mt-4" >
+            <strong>País:</strong> @Model.SubmittedCountry.CountryCode - @Model.SubmittedCountry.CountryName
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+}
