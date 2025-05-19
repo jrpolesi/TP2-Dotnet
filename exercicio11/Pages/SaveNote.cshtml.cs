@@ -9,7 +9,7 @@ public class SaveNoteModel : PageModel
 {
     [BindProperty] public InputModel Input { get; set; }
 
-    public List<string> FileNames { get; set; } = new();
+    public List<string> FileNames { get; set; } = [];
 
     public string SelectedFileName { get; set; }
 
@@ -28,6 +28,7 @@ public class SaveNoteModel : PageModel
 
         FileNames = Directory
             .EnumerateFiles(dir, "*.txt")
+            .OrderBy(f => new FileInfo(f).CreationTime)
             .Select(Path.GetFileName)
             .ToList();
 
