@@ -1,0 +1,17 @@
+@page "{cityName}"
+@model CityDetailsModel
+@{
+    ViewData["Title"] = "Detalhes da Cidade";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+
+    <p class="mt-4">
+        Você está vendo detalhes de: <strong>@Model.CityName</strong>
+    </p>
+
+    <a asp-page="/CityManager/CreateCity" class="btn btn-outline-primary">
+        Cadastrar nova cidade
+    </a>
+</div>
