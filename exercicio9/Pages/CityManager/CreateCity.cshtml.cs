@@ -8,7 +8,7 @@ public class CreateCityModel : PageModel
 {
     [BindProperty] public InputModel Input { get; set; }
 
-    public static List<string> Cities { get; private set; } = [];
+    public static List<string> Cities { get; private set; } = ["Rio", "São Paulo", "Brasília"];
 
     public void OnPost()
     {

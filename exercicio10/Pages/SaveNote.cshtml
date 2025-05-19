@@ -1,0 +1,33 @@
+@page
+@model SaveNoteModel
+@{
+    ViewData["Title"] = "Salvar Texto";
+}
+
+<div class="container mt-5">
+    <h2>@ViewData["Title"]</h2>
+
+    <form method="post">
+        <div class="mb-3">
+            <textarea asp-for="Input.Content" class="form-control" rows="5"
+                      placeholder="Digite seu texto..."></textarea>
+            <span asp-validation-for="Input.Content" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+
+    @if (@Model.FileName != null)
+    {
+        <div class="alert alert-success mt-4">
+            <strong>O texto foi salvo com sucesso!</strong>
+            <br/>
+            <a class="btn-link" href="@Url.Content($"~/files/{@Model.FileName}")" download>
+                Baixar arquivo
+            </a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+}
