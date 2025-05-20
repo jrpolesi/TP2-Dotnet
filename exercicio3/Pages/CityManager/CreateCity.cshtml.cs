@@ -9,13 +9,9 @@ public class CreateCityModel : PageModel
     [BindProperty] public InputModel Input { get; set; }
 
     public bool IsSubmitted { get; private set; } = false;
-    public string SubmittedName { get; private set; }
+    public string? SubmittedName { get; private set; }
     public bool IsValid => ModelState.IsValid;
     public string? ErrorMessage { get; private set; }
-
-    public void OnGet()
-    {
-    }
 
     public void OnPost()
     {
@@ -37,6 +33,6 @@ public class CreateCityModel : PageModel
     {
         [Required(ErrorMessage = "O nome da cidade é obrigatório.")]
         [MinLength(3, ErrorMessage = "O nome da cidade deve ter pelo menos 3 caracteres.")]
-        public string CityName { get; set; }
+        public string? CityName { get; set; }
     }
 }

@@ -9,7 +9,7 @@ public class CreateCityModel : PageModel
     [BindProperty] public InputModel Input { get; set; }
 
     public bool IsSubmitted { get; private set; } = false;
-    public string SubmittedName { get; private set; }
+    public string? SubmittedName { get; private set; }
 
     public void OnPost()
     {

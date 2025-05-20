@@ -15,12 +15,6 @@ public class SaveNoteModel : PageModel
 
     public string SelectedFileContent { get; set; }
 
-    public class InputModel
-    {
-        [Required(ErrorMessage = "O campo é obrigatório.")]
-        public string Content { get; set; }
-    }
-
     public void OnGet(string file = null)
     {
         var dir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "files");
@@ -30,6 +24,8 @@ public class SaveNoteModel : PageModel
             .EnumerateFiles(dir, "*.txt")
             .OrderBy(f => new FileInfo(f).CreationTime)
             .Select(Path.GetFileName)
+            .Where(f => !string.IsNullOrEmpty(f))
+            .Select(f => f!)
             .ToList();
 
         if (!string.IsNullOrEmpty(file))
@@ -58,5 +54,11 @@ public class SaveNoteModel : PageModel
         System.IO.File.WriteAllText(filePath, Input.Content);
 
         return RedirectToPage();
+    }
+
+    public class InputModel
+    {
+        [Required(ErrorMessage = "O campo é obrigatório.")]
+        public string Content { get; set; }
     }
 }

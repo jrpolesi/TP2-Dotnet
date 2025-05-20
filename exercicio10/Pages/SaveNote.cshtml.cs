@@ -12,14 +12,6 @@ public class SaveNoteModel : PageModel
 
     public string FileName { get; set; }
 
-    public class InputModel
-    {
-        [Required(ErrorMessage = "O campo é obrigatório.")]
-        public string Content { get; set; }
-    }
-
-    public void OnGet() { }
-
     public void OnPost()
     {
         if (!ModelState.IsValid)
@@ -39,5 +31,11 @@ public class SaveNoteModel : PageModel
         System.IO.File.WriteAllText(filePath, Input.Content);
 
         FileName = fileName;
+    }
+    
+    public class InputModel
+    {
+        [Required(ErrorMessage = "O campo é obrigatório.")]
+        public string Content { get; set; }
     }
 }
